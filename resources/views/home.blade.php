@@ -35,12 +35,12 @@
 
 <body>
 
-<!-- 🎵 MÚSICA -->
+<!-- MÚSICA -->
 <audio id="music" preload="auto">
     <source src="https://www.myinstants.com/media/sounds/south-park-theme-song.mp3" type="audio/mpeg">
 </audio>
 
-<!-- 🔝 NAVBAR -->
+<!--  NAVBAR -->
 <nav class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur border-b-4 border-black shadow">
     <div class="flex justify-between items-center px-6 py-4">
 
@@ -97,6 +97,8 @@
     </div>
 </nav>
 
+ <!-- Popup para assistir -->
+
 <div id="age-popup" class="fixed inset-0 bg-black/80 z-[100] hidden flex items-center justify-center p-4 backdrop-blur-sm">
     <div class="bg-white border-4 border-black rounded-3xl shadow-[8px_8px_0px_black] p-8 max-w-md w-full text-center relative overflow-hidden">
         
@@ -121,6 +123,8 @@
 
     </div>
 </div>
+
+<!-- Funçao para aparecer o popup com voz de fundo em java script (não esquecer de separar no js public) -->
 
 <script>
     const assistirBtn = document.getElementById('assitir');
@@ -175,24 +179,24 @@
     });
 </script>
 
-<!-- ❄️ NEVE -->
+<!--  Neve de fundo -->
 <div id="snow-container" class="fixed inset-0 pointer-events-none z-0"></div>
 
-<!-- 🌄 FUNDO + OVERLAY -->
+<!-- Imagem do background -->
 <div class="min-h-screen bg-cover bg-center bg-fixed bg-no-repeat relative z-0 pt-28"
      style="background-image: url('/images/southpark.png');">
 
-    <!-- 🌑 OVERLAY ESCURO (MELHORA VISUAL) -->
+    <!-- Fundo mais escuro -->
     <div class="absolute inset-0 bg-black/40 z-0"></div>
 
-    <!-- 📦 CONTEÚDO -->
+    <!-- Conteúdo -->
     <div class="relative z-20 max-w-2xl mx-auto p-6">
 
         <h2 class="text-3xl text-left font-black mb-6 text-white drop-shadow-[2px_2px_6px_black]">
             Latest Chirps
         </h2>
 
-        <!-- FORM -->
+        <!-- Form -->
         <div class="bg-white/90 backdrop-blur border-4 border-black rounded-3xl shadow-[6px_6px_0px_black] p-5 mb-6">
 
             <form method="POST" action="/chirps">
@@ -213,7 +217,7 @@
             </form>
         </div>
 
-        <!-- POSTS -->
+        <!-- Posts -->
         @foreach ($chirps as $chirp)
             <div class="bg-white/90 backdrop-blur border-4 border-black rounded-3xl shadow-[6px_6px_0px_black] p-4 mb-4">
 
@@ -243,9 +247,9 @@
 
 </div>
 
-<!-- ❄️ SCRIPT NEVE -->
+<!-- script da neve -->
 <script>
-// --- SCRIPT DA NEVE (Mantido) ---
+
 function createSnowflake() {
     const snowflake = document.createElement('div');
     snowflake.classList.add('snowflake');
@@ -261,11 +265,12 @@ function createSnowflake() {
 setInterval(createSnowflake, 100);
 
 
-// --- 🎵 LÓGICA DE ÁUDIO SEM REPETIÇÃO ---
+// Lógica dos aúdios sem repetir
+
 const musicPlayer = document.getElementById("music");
 const btn = document.getElementById("playBtn");
 
-// 1. Lista original com os seus 11 arquivos
+//  Lista original com as músicas ou efeitos sonoros
 const sonsOriginais = [
     "{{ asset('audio/som1.mp3') }}",
     "{{ asset('audio/som2.mp3') }}",
@@ -280,7 +285,7 @@ const sonsOriginais = [
     "{{ asset('audio/som11.mp3') }}"
 ];
 
-// 2. Criamos uma cópia que será a nossa "fila de reprodução"
+// Fila de reprodução
 let filaDeSons = [];
 
 // Função para embaralhar a lista (Algoritmo Fisher-Yates)
@@ -294,16 +299,16 @@ function embaralhar(array) {
 }
 
 btn.addEventListener("click", () => {
-    // 3. Se a fila estiver vazia, recarregamos e embaralhamos tudo de novo
+    //  Se a fila estiver vazia, recarrega e embaralha tudo de novo
     if (filaDeSons.length === 0) {
         console.log("Fila vazia! Reembaralhando todos os 11 sons...");
         filaDeSons = embaralhar(sonsOriginais);
     }
 
-    // 4. "Tira" o último som da fila (pop) para tocar
+    // "Tira" o último som da fila (pop) para tocar
     const proximoSom = filaDeSons.pop();
 
-    // 5. Configura e toca o áudio
+    // Configura e toca o áudio
     musicPlayer.pause();
     musicPlayer.currentTime = 0;
     musicPlayer.src = proximoSom;
@@ -319,6 +324,8 @@ btn.addEventListener("click", () => {
     console.log("Restam na fila: " + filaDeSons.length);
 });
 </script>
+
+<!-- Footer básico -->
 
 <footer class="bottom-0 left-0 w-full z-50 bg-white/90 backdrop-blur border-t-4 border-black shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
     <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
