@@ -119,57 +119,92 @@
     </div>
 </div>
 
+<!-- (todo seu código permanece igual até chegar na PRIMEIRA função openDeleteModal) -->
+
 <script>
+    
+    // --- LÓGICA POPUP DE IDADE ---
     const assistirBtn = document.getElementById('assitir');
     const agePopup = document.getElementById('age-popup');
     const popupContent = document.getElementById('popup-content');
     const targetUrl = 'https://www.southparkstudios.com.br/';
 
-    // --- FUNÇÃO PARA MOSTRAR O POPUP ---
+    const somIdade = new Audio("{{ asset('audio/idade.mp3') }}");
+    const somBurro = new Audio("{{ asset('audio/burro.mp3') }}");
+    const somExcluir = new Audio("{{ asset('audio/excluir.mp3') }}");
+
+    function openDeleteModal(actionUrl) {
+    const modal = document.getElementById('delete-popup');
+    const form = document.getElementById('confirm-delete-form');
+
+    form.action = actionUrl;
+
+    // 🔊 toca o som ao abrir (SÓ aqui)
+    somExcluir.currentTime = 0;
+    somExcluir.play();
+
+    modal.classList.remove('hidden');
+}
+
     assistirBtn.addEventListener('click', (e) => {
-        e.preventDefault(); // Impede qualquer comportamento padrão (caso fosse um link)
-        agePopup.classList.remove('hidden'); // Mostra o popup tirando a classe 'hidden'
-
-         const vozCartman = new Audio("{{ asset('audio/idade.mp3') }}");
-    vozCartman.play();
+        e.preventDefault();
+        agePopup.classList.remove('hidden');
+        somIdade.currentTime = 0;
+        somIdade.play();
     });
 
-    // --- FUNÇÃO SE CLICAR EM "SIM" ---
     document.getElementById('age-yes').addEventListener('click', () => {
-        window.location.href = targetUrl; // Redireciona direto
+        window.location.href = targetUrl;
     });
 
-    // --- FUNÇÃO SE CLICAR EM "NÃO" ---
     document.getElementById('age-no').addEventListener('click', () => {
+        somBurro.currentTime = 0;
+        somBurro.play();
 
-    // Tocar a voz do Cartman
-    const vozCartman = new Audio("{{ asset('audio/burro.mp3') }}");
-    vozCartman.play();
-
-        // Muda o conteúdo do popup com a frase zoada
         popupContent.innerHTML = `
             <p class="text-2xl font-black mb-3 text-red-600">SÉRIO?! VOCÊ É BURRO?</p>
-            <p class="text-lg font-bold mb-8">É só mentir idiota, eu tô pouco me fudendo! Vai lá assistir seu babaca!</p>
-            
-            <div class="flex gap-4 justify-center">
-                <button id="age-redirect-anyway" class="bg-yellow-300 text-black border-2 border-black px-8 py-3 rounded-full font-bold hover:scale-105 transition shadow-[4px_4px_0px_black] text-lg">
+            <p class="text-lg font-bold mb-8">É só mentir idiota 😭</p>
+            <div class="flex justify-center">
+                <button id="age-redirect-anyway" class="bg-yellow-300 text-black border-2 border-black px-6 py-2 rounded-full font-bold">
                     Tá bom😭
                 </button>
             </div>
         `;
 
-        // Cria o ouvinte para o novo botão que acabamos de criar dinamicamente
-        document.getElementById('age-redirect-anyway').addEventListener('click', () => {
-            window.location.href = targetUrl; // Redireciona
-        });
+        document.getElementById('age-redirect-anyway').onclick = () => {
+            window.location.href = targetUrl;
+        };
     });
 
-    // --- (OPCIONAL) FECHAR O POPUP SE CLICAR FORA ---
     agePopup.addEventListener('click', (e) => {
-        if (e.target === agePopup) {
-            agePopup.classList.add('hidden');
-        }
+        if (e.target === agePopup) agePopup.classList.add('hidden');
     });
+
+    function openDeleteModal(actionUrl) {
+    const modal = document.getElementById('delete-popup');
+    const form = document.getElementById('confirm-delete-form');
+
+    form.action = actionUrl;
+
+    // 🔊 toca o som ao abrir
+    somExcluir.currentTime = 0;
+    somExcluir.play();
+
+    modal.classList.remove('hidden');
+}
+
+// Fechar modal ao cancelar (SEM SOM)
+document.getElementById('cancel-delete').addEventListener('click', () => {
+    document.getElementById('delete-popup').classList.add('hidden');
+});
+
+// Fechar clicando fora
+document.getElementById('delete-popup').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('delete-popup')) {
+        document.getElementById('delete-popup').classList.add('hidden');
+    }
+});
+
 </script>
 
 <div id="snow-container" class="fixed inset-0 pointer-events-none z-0"></div>
@@ -222,13 +257,6 @@
                 <p class="text-lg">
                     {{ $chirp->message }}
                 </p>
-
-                {{-- Exibição da imagem do post (quando o upload funcionar) --}}
-                @if($chirp->image)
-                    <div class="mt-2 border-2 border-black rounded-2xl overflow-hidden shadow-[4px_4px_0px_black]">
-                        <img src="{{ asset('storage/' . $chirp->image) }}" class="w-full h-auto object-cover max-h-80">
-                    </div>
-                @endif
 
                 {{-- Botão de Excluir --}}
                 @if ($chirp->user->is(auth()->user()))
@@ -347,31 +375,28 @@ musicPlayer.onended = () => {
 <div id="delete-popup" class="fixed inset-0 bg-black/80 z-[110] hidden flex items-center justify-center p-4 backdrop-blur-sm">
     <div class="bg-white border-4 border-black rounded-3xl shadow-[8px_8px_0px_black] p-8 max-w-md w-full text-center relative">
         <h3 class="text-2xl font-black mb-4 text-red-600">PERAÍ, CACETE!</h3>
-        <p class="text-lg font-bold mb-6">Você tem certeza que quer apagar essa porcaria, cara? Não tem volta!</p>
         
-        <div class="flex gap-4 justify-center">
-            <button id="cancel-delete" class="bg-gray-400 text-white border-2 border-black px-6 py-2 rounded-full font-bold hover:scale-105 transition shadow-[4px_4px_0px_black]">
-                Não, deixa aí
-            </button>
-            <form id="confirm-delete-form" method="POST" action="">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="bg-red-500 text-white border-2 border-black px-6 py-2 rounded-full font-bold hover:scale-105 transition shadow-[4px_4px_0px_black]">
-                    Sim, apaga logo!
+        <div id="delete-text-container">
+            <p class="text-lg font-bold mb-6">Você tem certeza que quer apagar essa porcaria, cara? Não tem volta!</p>
+            
+            <div class="flex gap-4 justify-center">
+                <button id="cancel-delete" type="button" class="bg-gray-400 text-white border-2 border-black px-6 py-2 rounded-full font-bold hover:scale-105 transition shadow-[4px_4px_0px_black]">
+                    Não, deixa aí
                 </button>
-            </form>
+                
+                <form id="confirm-delete-form" method="POST" action="">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="bg-red-500 text-white border-2 border-black px-6 py-2 rounded-full font-bold hover:scale-105 transition shadow-[4px_4px_0px_black]">
+                        Sim, apaga logo!
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-    // Lógica para abrir o modal de exclusão
-    function openDeleteModal(actionUrl) {
-        const modal = document.getElementById('delete-popup');
-        const form = document.getElementById('confirm-delete-form');
-        form.action = actionUrl;
-        modal.classList.remove('hidden');
-    }
 
     // Fechar modal ao cancelar
     document.getElementById('cancel-delete').addEventListener('click', () => {
