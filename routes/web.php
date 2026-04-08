@@ -10,6 +10,11 @@ use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
 
+Route::get('/notifications', function () {
+    $notifications = \App\Models\Notification::with('fromUser')->latest()->get();
+    return view('notifications', compact('notifications'));
+})->middleware('auth');
+
 //notificações
 Route::get('/notifications', function () {
     $notifications = \App\Models\Notification::latest()->get();
