@@ -6,11 +6,14 @@ use App\Models\Chirp;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\ChirpController; // Adicionado para o delete funcionar via Controller
+use App\Http\Controllers\ChirpController;
+use App\Http\Controllers\LikeController;
+
+Route::post('/chirps/{chirp}/like', [LikeController::class, 'toggle'])->middleware('auth');
 
 // Home
 Route::get('/', function () {
-    $chirps = Chirp::with('user')->latest()->get();
+    $chirps = Chirp::with(['user', 'likes'])->latest()->get();
     return view('home', compact('chirps'));
 })->name('chirps.index');
 

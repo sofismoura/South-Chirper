@@ -262,6 +262,46 @@ document.getElementById('delete-popup').addEventListener('click', (e) => {
                     {{ $chirp->message }}
                 </p>
 
+                <form method="POST" action="/chirps/{{ $chirp->id }}/like">
+    @csrf
+
+    <button class="flex items-center gap-1 group transition">
+
+        @if($chirp->likes->where('user_id', auth()->id())->count())
+            <!-- CURTIDO -->
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                 fill="currentColor" 
+                 viewBox="0 0 24 24"
+                 class="w-5 h-5 text-red-500 group-hover:scale-110 transition">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+                2 6 4 4 6.5 4c1.74 0 3.41 1.01 
+                4.22 2.44h.56C12.09 5.01 13.76 4 
+                15.5 4 18 4 20 6 20 8.5 
+                c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        @else
+            <!-- NÃO CURTIDO -->
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                 fill="none" 
+                 stroke="currentColor" 
+                 viewBox="0 0 24 24"
+                 class="w-5 h-5 text-gray-600 group-hover:text-red-500 group-hover:scale-110 transition">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4.318 6.318C5.562 5.074 7.537 5.074 
+                8.78 6.318L12 9.54l3.22-3.222c1.244-1.244 
+                3.219-1.244 4.463 0 1.244 1.244 
+                1.244 3.219 0 4.463L12 21.35l-7.683-7.683
+                c-1.244-1.244-1.244-3.219 0-4.463z"/>
+            </svg>
+        @endif
+
+        <span class="text-sm font-bold">
+            {{ $chirp->likes->count() }}
+        </span>
+
+    </button>
+</form>
+
                 {{-- Botão de Excluir --}}
                 @if ($chirp->user->is(auth()->user()))
                     <div class="mt-2 text-right">
