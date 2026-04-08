@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Chirp;
+use App\Models\Notification; // 🔥 IMPORTANTE
 use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
@@ -20,6 +21,16 @@ class CommentController extends Controller
             'user_id' => Auth::id(),
             'chirp_id' => $chirp->id
         ]);
+
+        // 🔔 só notifica se NÃO for você mesma
+        if ($chirp->user_id != Auth::id()) {
+            Notification::create([
+                'user_id' => $chirp->user_id,
+                'from_user_id' => Auth::id(),
+                'type' => 'comment',
+                'chirp_id' => $chirp->id
+            ]);
+        }
 
         return back();
     }

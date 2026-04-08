@@ -10,6 +10,12 @@ use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
 
+//notificações
+Route::get('/notifications', function () {
+    $notifications = \App\Models\Notification::latest()->get();
+    return view('notifications', compact('notifications'));
+})->middleware('auth');
+
 //comentário
 Route::post('/chirps/{chirp}/comment', [CommentController::class, 'store'])->middleware('auth');
 

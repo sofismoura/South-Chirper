@@ -58,6 +58,7 @@
                  class="bg-yellow-300 text-black border-2 border-black px-3 py-1 rounded-full">
                  Música
             </button>
+
             <a href="/login"
                class="bg-yellow-300 text-black border-2 border-black px-3 py-1 rounded-full">
                Login
@@ -82,6 +83,10 @@
             
             <form method="POST" action="/logout" class="ml-1">
                 @csrf
+
+                <a href="/notifications" class="relative">
+             🔔
+           </a>
                 <button type="submit" class="text-[10px] font-bold bg-red-500 text-white border border-black px-2 py-0.5 rounded-md hover:bg-red-600 transition">
                     SAIR
                 </button>
