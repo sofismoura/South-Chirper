@@ -302,16 +302,50 @@ document.getElementById('delete-popup').addEventListener('click', (e) => {
     </button>
 </form>
 
-                {{-- Botão de Excluir --}}
-                @if ($chirp->user->is(auth()->user()))
-                    <div class="mt-2 text-right">
-                        <button type="button" 
-                            onclick="openDeleteModal('{{ route('chirps.destroy', $chirp) }}')"
-                            class="text-[10px] font-black uppercase bg-red-500 text-white border-2 border-black px-3 py-1 rounded-md hover:bg-red-700 transition shadow-[2px_2px_0px_black]">
-                            Excluir
-                        </button>
-                    </div>
-                @endif
+<!-- 💬 FORM COMENTAR -->
+<form method="POST" action="/chirps/{{ $chirp->id }}/comment" class="mt-3 flex gap-2">
+    @csrf
+    <input type="text" name="message" placeholder="Comentar..."
+        class="flex-1 border-2 border-black rounded-full px-3 py-1 text-sm">
+    
+    <button class="bg-white text-black border-2 border-black px-3 rounded-full font-bold hover:bg-gray-100 transition">
+        💬
+    </button>
+</form>
+
+<!-- 💬 LISTA DE COMENTÁRIOS -->
+<div class="mt-2 space-y-2">
+
+@foreach($chirp->comments as $comment)
+    <div class="bg-gray-100 border-2 border-black rounded-xl p-2 text-sm">
+
+        <span class="font-bold">
+            {{ $comment->user->name }}
+        </span>
+
+        <span class="text-gray-500 text-xs">
+            • {{ $comment->created_at->diffForHumans() }}
+        </span>
+
+        <p>
+            {{ $comment->message }}
+        </p>
+
+    </div>
+@endforeach
+
+</div>
+
+{{-- Botão de Excluir --}}
+@if ($chirp->user->is(auth()->user()))
+    <div class="mt-2 text-right">
+        <button type="button" 
+            onclick="openDeleteModal('{{ route('chirps.destroy', $chirp) }}')"
+            class="text-[10px] font-black uppercase bg-red-500 text-white border-2 border-black px-3 py-1 rounded-md hover:bg-red-700 transition shadow-[2px_2px_0px_black]">
+            Excluir
+        </button>
+    </div>
+@endif
             </div>
 
         </div>

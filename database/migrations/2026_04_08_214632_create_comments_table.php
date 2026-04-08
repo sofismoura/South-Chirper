@@ -10,12 +10,15 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('comments', function (Blueprint $table) {
+        $table->id();
+        $table->text('message');
+        $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+        $table->foreignId('chirp_id')->constrained()->cascadeOnDelete();
+        $table->timestamps();
+    });
+}
 
     /**
      * Reverse the migrations.

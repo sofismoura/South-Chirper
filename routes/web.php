@@ -8,12 +8,17 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\CommentController;
 
+//comentário
+Route::post('/chirps/{chirp}/comment', [CommentController::class, 'store'])->middleware('auth');
+
+//like
 Route::post('/chirps/{chirp}/like', [LikeController::class, 'toggle'])->middleware('auth');
 
 // Home
 Route::get('/', function () {
-    $chirps = Chirp::with(['user', 'likes'])->latest()->get();
+    $chirps = Chirp::with(['user', 'likes', 'comments.user'])->latest()->get();
     return view('home', compact('chirps'));
 })->name('chirps.index');
 

@@ -56,4 +56,9 @@ public function likes()
 {
     return $this->hasMany(\App\Models\Like::class);
 }
+
+public function comments()
+{
+    return $this->hasMany(\App\Models\Comment::class);
+}
 }
