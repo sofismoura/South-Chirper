@@ -10,17 +10,22 @@ use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Notification;
 
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->middleware('auth');
 Route::post('/profile/update', [ProfileController::class, 'update'])->middleware('auth');
 
-Route::get('/notifications/{notification}', function (\App\Models\Notification $notification) {
+Route::get('/notifications', function () {
 
-    // marca como lida
-    $notification->update(['read' => true]);
+    $notifications = \App\Models\Notification::where('user_id', auth()->id())
+        ->latest()
+        ->get();
 
-    // redireciona pro post
-    return redirect('/#chirp-' . $notification->chirp_id);
+    \App\Models\Notification::where('user_id', auth()->id())
+        ->where('read', false)
+        ->update(['read' => true]);
+
+    return view('notifications', compact('notifications'));
 
 })->middleware('auth');
 

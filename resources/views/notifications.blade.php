@@ -40,7 +40,15 @@
     <div class="flex justify-between items-center px-6 py-4">
 
     @php
-    $countNotifications = \App\Models\Notification::where('user_id', auth()->id())
+// 🔥 MARCA COMO LIDO AO ENTRAR NA PÁGINA DE NOTIFICAÇÕES
+if (request()->is('notifications')) {
+    \App\Models\Notification::where('user_id', auth()->id())
+        ->where('read', false)
+        ->update(['read' => true]);
+}
+
+// 🔔 AGORA CONTA NORMAL
+$countNotifications = \App\Models\Notification::where('user_id', auth()->id())
     ->where('read', false)
     ->count();
 @endphp
