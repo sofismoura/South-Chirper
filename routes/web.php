@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ProfileController;
+
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->middleware('auth');
+Route::post('/profile/update', [ProfileController::class, 'update'])->middleware('auth');
 
 Route::get('/notifications/{notification}', function (\App\Models\Notification $notification) {
 

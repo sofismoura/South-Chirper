@@ -102,10 +102,21 @@
     </a>
 
     <!-- 👤 USER -->
-    <img 
-        src="{{ auth()->user()->photo ? asset('storage/' . auth()->user()->photo) : 'https://api.dicebear.com/7.x/adventurer/svg?seed=' . auth()->user()->id }}"
-        class="w-10 h-10 border-2 border-black rounded-full bg-white object-cover shadow-[2px_2px_0px_black]"
-    >
+    <div class="relative group cursor-pointer">
+    
+    <a href="/profile/edit">
+        <img 
+            src="{{ auth()->user()->photo ? asset('storage/' . auth()->user()->photo) : 'https://api.dicebear.com/7.x/adventurer/svg?seed=' . auth()->user()->id }}"
+            class="w-10 h-10 border-2 border-black rounded-full bg-white object-cover shadow-[2px_2px_0px_black]"
+        >
+
+        <!-- ✏️ Ícone lápis -->
+        <div class="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            ✏️
+        </div>
+    </a>
+
+</div>
 
     <div class="flex flex-col">
         <span class="text-[10px] font-black uppercase leading-none text-black/50">Logado como:</span>
