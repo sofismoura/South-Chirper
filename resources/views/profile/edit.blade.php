@@ -206,7 +206,7 @@ document.getElementById('photoInput').addEventListener('change', function(event)
     <div class="bg-white border-4 border-black rounded-3xl p-6 text-center">
 
         <h2 class="text-2xl font-black text-red-600 mb-3">TEM CERTEZA?!</h2>
-        <p class="mb-4">Essa ação é irreversível 💀</p>
+        <p class="mb-4">Não que eu me importe com você, mas essa ação é irreversível! 💀</p>
 
         <div class="flex gap-4 justify-center">
             <button onclick="closeDeleteAccountModal()"
@@ -227,13 +227,25 @@ document.getElementById('photoInput').addEventListener('change', function(event)
     </div>
 </div>
 
+<audio id="deleteSound">
+    <source src="{{ asset('audio/apagar_conta.mp3') }}" type="audio/mpeg">
+</audio>
+
 <script>
 function openDeleteAccountModal() {
     document.getElementById('delete-account-modal').classList.remove('hidden');
+
+    const audio = document.getElementById('deleteSound');
+    audio.currentTime = 0; // reinicia sempre
+    audio.play();
 }
 
 function closeDeleteAccountModal() {
     document.getElementById('delete-account-modal').classList.add('hidden');
+
+    const audio = document.getElementById('deleteSound');
+    audio.pause();
+    audio.currentTime = 0;
 }
 </script>
 
