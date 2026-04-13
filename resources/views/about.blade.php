@@ -71,6 +71,29 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
             <!-- CARD 1 -->
+             <div class="bg-white/95 border-4 border-black rounded-3xl p-6 shadow-[6px_6px_0px_black] flex flex-col">
+                <h2 class="text-2xl font-black mb-4 text-pink-600 uppercase italic">Desenvolvedora</h2>
+                <br>
+                <img src="{{ asset('images/eu3.jpeg') }}"
+                class="mx-auto w-32 h-32 border-4 border-black rounded-full mb-3 bg-white shadow-[4px_4px_0px_black] object-cover">
+
+                <h2 class="text-2xl font-black uppercase italic text-center">Sofia Moura</h2>
+
+                <p class="text-xs uppercase mb-4 text-black/50 text-center">
+                    Desenvolvedora Web & Estudante
+                </p>
+
+                <p class="text-sm text-justify">
+                    Tenho 18 anos e gosto de criar coisas que misturam criatividade, estética e um toque de caos organizado.
+
+Responsável por todo o design caótico e funcionalidade deste Chirper (tive a ajudinha do GPT).
+
+Sempre explorando novas ideias e formas de expressão, seja no design, na tecnologia ou na arte.
+
+                </p>
+            </div>
+            
+            <!-- CARD 2 -->
             <div class="bg-white/95 border-4 border-black rounded-3xl p-6 shadow-[6px_6px_0px_black]">
                 <h2 class="text-2xl font-black mb-4 text-sky-600 uppercase italic">O Trabalho</h2>
 
@@ -95,31 +118,23 @@
                 </div>
             </div>
 
-            <!-- CARD 2 -->
-            <div class="bg-white/95 border-4 border-black rounded-3xl p-6 shadow-[6px_6px_0px_black] flex flex-col">
-                <h2 class="text-2xl font-black mb-4 text-pink-600 uppercase italic">Desenvolvedora</h2>
-                <br>
-                <img src="{{ asset('images/eu2.png') }}"
-                class="mx-auto w-32 h-32 border-4 border-black rounded-full mb-3 bg-white shadow-[4px_4px_0px_black] object-cover">
-
-                <h2 class="text-2xl font-black uppercase italic text-center">Sofia Moura</h2>
-
-                <p class="text-xs uppercase mb-4 text-black/50 text-center">
-                    Desenvolvedora Web & Estudante
-                </p>
-
-                <p class="text-sm text-justify">
-                    Tenho 18 anos e gosto de criar coisas que misturam criatividade, estética e um toque de caos organizado.
-
-Responsável por todo o design caótico e funcionalidade deste Chirper (tive a ajudinha do GPT).
-
-Sempre explorando novas ideias e formas de expressão, seja no design, na tecnologia ou na arte.
-
-                </p>
-            </div>
 
             <!-- CARD 3 -->
             <div class="bg-white/95 border-4 border-black rounded-3xl p-6 shadow-[6px_6px_0px_black]">
+                <h2 class="text-2xl font-black mb-4 text-green-600 uppercase italic">Estética</h2>
+
+                <p class="text-sm mb-3">
+                    A escolha de South Park foi baseada no estilo louco da animação, por mais que possua muitas coisas erradas, consegue fazer muitos de nós rirem.
+                </p>
+
+                <div class="rounded-lg overflow-hidden border-2 border-black h-24 bg-black">
+                    <img src="https://media.giphy.com/media/3o7TKUBkZ2xmlka4rm/giphy.gif"
+                         class="w-full h-full object-cover opacity-80">
+                </div>
+            </div>
+
+            <!-- CARD 4 -->
+             <div class="bg-white/95 border-4 border-black rounded-3xl p-6 shadow-[6px_6px_0px_black]">
                 <h2 class="text-2xl font-black mb-4 text-orange-500 uppercase italic">Referência</h2>
 
                 <p class="text-sm mb-4">
@@ -139,27 +154,13 @@ Sempre explorando novas ideias e formas de expressão, seja no design, na tecnol
 
             </div>
 
-            <!-- CARD 4 -->
-            <div class="bg-white/95 border-4 border-black rounded-3xl p-6 shadow-[6px_6px_0px_black]">
-                <h2 class="text-2xl font-black mb-4 text-green-600 uppercase italic">Estética</h2>
-
-                <p class="text-sm mb-3">
-                    A escolha de South Park foi baseada no estilo louco da animação, por mais que possua muitas coisas erradas, consegue fazer muito de nós rirem.
-                </p>
-
-                <div class="rounded-lg overflow-hidden border-2 border-black h-24 bg-black">
-                    <img src="https://media.giphy.com/media/3o7TKUBkZ2xmlka4rm/giphy.gif"
-                         class="w-full h-full object-cover opacity-80">
-                </div>
-            </div>
-
             <!-- CARD CONTATOS (CORRIGIDO) -->
             <div class="bg-white border-4 border-black rounded-3xl p-6 shadow-[6px_6px_0px_black] col-span-1 md:col-span-2 relative overflow-hidden text-center">
 
                 <img src="/images/southparklogo.png"
                      class="absolute -top-6 -right-6 h-28 opacity-10 rotate-12">
 
-                <h2 class="text-2xl font-black uppercase italic mb-2 text-purple-600 relative z-10">
+                <h2 class="text-2xl font-black uppercase italic mb-2 text-red-600 relative z-10">
                     Meus Contatos
                 </h2>
 
