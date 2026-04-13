@@ -71,7 +71,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
             <!-- CARD 1 -->
-             <div class="bg-white/95 border-4 border-black rounded-3xl p-6 shadow-[6px_6px_0px_black] flex flex-col">
+            <div class="bg-white border-4 border-black rounded-3xl p-6 shadow-[6px_6px_0px_black]">
                 <h2 class="text-2xl font-black mb-4 text-pink-600 uppercase italic">Desenvolvedora</h2>
                 <br>
                 <img src="{{ asset('images/eu3.jpeg') }}"
@@ -94,7 +94,7 @@ Sempre explorando novas ideias e formas de expressão, seja no design, na tecnol
             </div>
             
             <!-- CARD 2 -->
-            <div class="bg-white/95 border-4 border-black rounded-3xl p-6 shadow-[6px_6px_0px_black]">
+           <div class="bg-white border-4 border-black rounded-3xl p-6 shadow-[6px_6px_0px_black]">
                 <h2 class="text-2xl font-black mb-4 text-sky-600 uppercase italic">O Trabalho</h2>
 
                 <p class="text-gray-800 leading-tight">
@@ -106,11 +106,10 @@ Sempre explorando novas ideias e formas de expressão, seja no design, na tecnol
 
                 <br>
 
-               <video autoplay loop muted playsinline
-    class="w-32 h-32 mx-auto mt-4 border-4 border-black rounded-2xl  object-cover">
-
-    <source src="{{ asset('videos/eu.mp4') }}" type="video/mp4">
-</video>
+              <video autoplay loop muted playsinline
+            class="w-32 h-32 mx-auto object-cover">
+            <source src="{{ asset('videos/euuu.mp4') }}" type="video/mp4">
+        </video>
                 <br>
 
                 <div class="mt-4 p-3 bg-yellow-100 border-2 border-black rounded-xl text-sm italic">
@@ -120,7 +119,7 @@ Sempre explorando novas ideias e formas de expressão, seja no design, na tecnol
 
 
             <!-- CARD 3 -->
-            <div class="bg-white/95 border-4 border-black rounded-3xl p-6 shadow-[6px_6px_0px_black]">
+           <div class="bg-white border-4 border-black rounded-3xl p-6 shadow-[6px_6px_0px_black]">
                 <h2 class="text-2xl font-black mb-4 text-green-600 uppercase italic">Estética</h2>
 
                 <p class="text-sm mb-3">
@@ -134,25 +133,40 @@ Sempre explorando novas ideias e formas de expressão, seja no design, na tecnol
             </div>
 
             <!-- CARD 4 -->
-             <div class="bg-white/95 border-4 border-black rounded-3xl p-6 shadow-[6px_6px_0px_black]">
-                <h2 class="text-2xl font-black mb-4 text-orange-500 uppercase italic">Referência</h2>
+            <div class="bg-white border-4 border-black rounded-3xl p-6 shadow-[6px_6px_0px_black]">
 
-                <p class="text-sm mb-4">
-                    Este projeto seguiu a lógica inicial do tutorial oficial do Laravel:
-                    <a href="https://laravel.com/learn/getting-started-with-laravel/what-are-we-building"
-                       target="_blank" class="underline hover:text-blue-800">
-                        What are we building?
-                    </a>.
-                </p>
+    <h2 class="text-2xl font-black mb-4 text-orange-500 uppercase italic">
+        Referência
+    </h2>
 
-                <p class="text-sm">
-                    As funcionalidades de Likes e Comentários foram implementadas via AJAX.
-                </p>
+    <p class="text-sm mb-4">
+        Este projeto seguiu a lógica inicial do tutorial oficial do Laravel:
+        <a href="https://laravel.com/learn/getting-started-with-laravel/what-are-we-building"
+           target="_blank" class="underline hover:text-blue-800">
+            What are we building?
+        </a>.
+    </p>
 
-                 <img src="{{ asset('gif/kenny.gif') }}"
-     class="w-24 ml-auto mt-4">
+    <p class="text-sm">
+        As funcionalidades de Likes e Comentários foram implementadas via AJAX.
+    </p>
 
-            </div>
+    <!-- PERSONAGENS -->
+    <div class="flex justify-between items-center mt-6">
+
+        <!-- ESQUERDA (você) -->
+        <video autoplay loop muted playsinline
+            class="w-24 h-24 object-cover">
+            <source src="{{ asset('videos/euu.mp4') }}" type="video/mp4">
+        </video>
+
+        <!-- DIREITA (Kenny) -->
+        <img src="{{ asset('gif/kenny.gif') }}"
+             class="w-32 h-32 object-contain">
+
+    </div>
+
+</div>
 
             <!-- CARD CONTATOS (CORRIGIDO) -->
             <div class="bg-white border-4 border-black rounded-3xl p-6 shadow-[6px_6px_0px_black] col-span-1 md:col-span-2 relative overflow-hidden text-center">
