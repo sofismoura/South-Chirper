@@ -37,11 +37,9 @@
 
 <body>
 
-
     <audio id="music" preload="auto">
         <source src="https://www.myinstants.com/media/sounds/south-park-theme-song.mp3" type="audio/mpeg">
     </audio>
-
 
     <nav class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur border-b-4 border-black shadow">
         <div class="flex justify-between items-center px-6 py-4">
@@ -75,7 +73,6 @@
                 @auth
                     <div class="flex items-center gap-3 ml-2 pl-3 border-l-2 border-black/20">
 
-                        <!-- 🔔 -->
                         <a href="/notifications" class="relative">
                             <svg class="w-6 h-6 text-black hover:scale-110 transition" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
@@ -90,7 +87,6 @@
                             @endif
                         </a>
 
-                        <!-- user -->
                         <a href="/profile/edit">
                             <img src="{{ auth()->user()->photo ? asset('storage/' . auth()->user()->photo) : 'https://api.dicebear.com/7.x/adventurer/svg?seed=' . auth()->user()->id }}"
                                 class="w-10 h-10 border-2 border-black rounded-full">
@@ -114,17 +110,13 @@
         </div>
     </nav>
 
-    <!-- neve -->
     <div id="snow-container" class="fixed inset-0 pointer-events-none z-10"></div>
 
-    <!-- fundo -->
     <div class="relative min-h-screen bg-cover bg-center pt-28 flex justify-center items-center"
         style="background-image: url('/images/southpark.png');">
 
-        <!-- sombra -->
         <div class="absolute inset-0 bg-black/60 z-0"></div>
 
-        <!-- conteúdo em si -->
         <div class="relative z-20 w-full max-w-md">
 
             <div class="bg-white border-4 border-black rounded-3xl p-6 shadow-[6px_6px_0px_black]">
@@ -139,26 +131,22 @@
                     <input type="text" name="name" value="{{ auth()->user()->name }}"
                         class="w-full border-2 border-black p-2 mb-3 rounded">
 
-                    <!-- preview da foto -->
                     <div class="flex flex-col items-center mb-4">
                         <img id="preview"
                             src="{{ auth()->user()->photo ? asset('storage/' . auth()->user()->photo) : 'https://api.dicebear.com/7.x/adventurer/svg?seed=' . auth()->user()->id }}"
                             class="w-24 h-24 border-4 border-black rounded-full object-cover mb-2">
 
-                        <label
-                            class="bg-yellow-300 border-2 border-black px-4 py-1 rounded-full cursor-pointer hover:scale-105 transition">
+                        <label class="bg-yellow-300 border-2 border-black px-4 py-1 rounded-full cursor-pointer hover:scale-105 transition">
                             Trocar foto
                             <input type="file" name="photo" id="photoInput" class="hidden" accept="image/*">
                         </label>
                     </div>
 
-                    <button
-                        class="w-full bg-yellow-300 border-2 border-black py-2 rounded-full font-bold hover:scale-105 transition">
+                    <button class="w-full bg-yellow-300 border-2 border-black py-2 rounded-full font-bold hover:scale-105 transition">
                         Salvar
                     </button>
                 </form>
 
-                <!-- função para excluir permanentemente a conta -->
                 <div class="mt-6 border-t pt-4 text-center">
                     <h3 class="text-red-600 font-black mb-2 ">Zona de perigo ⚠️</h3>
 
@@ -173,41 +161,7 @@
         </div>
     </div>
 
-    <!-- neve -->
-    <script>
-        function createSnowflake() {
-            const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake');
-
-            const size = Math.random() * 6 + 4;
-            snowflake.style.left = Math.random() * window.innerWidth + 'px';
-            snowflake.style.width = size + 'px';
-            snowflake.style.height = size + 'px';
-            snowflake.style.animationDuration = (Math.random() * 5 + 5) + 's';
-
-            document.getElementById('snow-container').appendChild(snowflake);
-
-            setTimeout(() => snowflake.remove(), 10000);
-        }
-        setInterval(createSnowflake, 120);
-    </script>
-
-    <!-- script da neve  -->
-    <script>
-        document.getElementById('photoInput').addEventListener('change', function (event) {
-            const file = event.target.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById('preview').src = e.target.result;
-                }
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
-
-    <!-- popup de certeza da exclusão -->
+    <!-- MODAL -->
     <div id="delete-account-modal" class="fixed inset-0 bg-black/80 hidden flex items-center justify-center z-[100]">
         <div class="bg-white border-4 border-black rounded-3xl p-6 text-center">
 
@@ -225,35 +179,42 @@
                     @method('DELETE')
 
                     <button
-                        class="bg-red-600 text-white border-2 border-black px-6 py-2 rounded-full font-bold hover:scale-105 transition shadow-[4px_4px_0px_black]"">
-                    Sim
-                </button>
-            </form>
+                        class="bg-red-600 text-white border-2 border-black px-6 py-2 rounded-full font-bold hover:scale-105 transition shadow-[4px_4px_0px_black]">
+                        Sim
+                    </button>
+                </form>
+            </div>
+
         </div>
-
     </div>
-</div>
 
-<!-- lógica do audio -->
- 
-                        <script>
-                            function openDeleteAccountModal() {
-                                document.getElementById('delete-account-modal').classList.remove('hidden');
+    <!-- AUDIO -->
+    <audio id="deleteSound">
+        <source src="{{ asset('audio/apagar_conta.mp3') }}" type="audio/mpeg">
+    </audio>
 
-                                const audio = document.getElementById('deleteSound');
-                                audio.currentTime = 0; // reinicia sempre
-                                audio.play();
-                            }
+    <!-- JS -->
+    <script>
+        function openDeleteAccountModal() {
+            document.getElementById('delete-account-modal').classList.remove('hidden');
 
-                            function closeDeleteAccountModal() {
-                                document.getElementById('delete-account-modal').classList.add('hidden');
+            const audio = document.getElementById('deleteSound');
+            if (audio) {
+                audio.currentTime = 0;
+                audio.play();
+            }
+        }
 
-                                const audio = document.getElementById('deleteSound');
-                                audio.pause();
-                                audio.currentTime = 0;
-                            }
-                        </script>
+        function closeDeleteAccountModal() {
+            document.getElementById('delete-account-modal').classList.add('hidden');
+
+            const audio = document.getElementById('deleteSound');
+            if (audio) {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+        }
+    </script>
 
 </body>
-
 </html>
