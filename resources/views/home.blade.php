@@ -283,8 +283,11 @@
                     <form method="POST" action="/chirps">
                         @csrf
 
-                        <textarea name="message" placeholder="O que está passando pela sua mente, cara?"
+                        <textarea name="message" placeholder="O que está passando pela sua mente, cara?
+Já disponível na internet🎉"
+                        
                             class="w-full border-2 border-black rounded-xl p-3 bg-white"></textarea>
+                            
 
                         <div class="text-right mt-3">
                             <button
