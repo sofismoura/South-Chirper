@@ -235,10 +235,7 @@
 </div>
 
 <!-- lógica do audio -->
-<audio id=" deleteSound">
-                        <source src="{{ asset('audio/apagar_conta.mp3') }}" type="audio/mpeg">
-                        </audio>
-
+ 
                         <script>
                             function openDeleteAccountModal() {
                                 document.getElementById('delete-account-modal').classList.remove('hidden');
