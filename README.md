@@ -1,59 +1,159 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
+  <img src="public/images/southparklogo.png" alt="South Chirper Logo" width="400px">
+</div>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 🐦 South Chirper
 
-## About Laravel
+> Uma rede social inspirada em South Park — caótica, divertida e cheia de personalidade.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🌍 Visão Geral do Projeto
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+O **South Chirper** é uma plataforma social onde usuários podem postar mensagens ("Chirps"), curtir, comentar e interagir em um ambiente estilizado com a estética de *South Park*.
 
-## Learning Laravel
+O sistema foi desenvolvido com foco em:
+- Interatividade em tempo real
+- Experiência divertida e imersiva
+- Interface estilizada com Tailwind CSS
+- Armazenamento de mídia em nuvem (Cloudinary)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ⚙️ Funcionalidades Principais
 
-## Laravel Sponsors
+- 📝 Criar posts (Chirps)
+- ❤️ Curtir posts
+- 💬 Comentar em posts
+- 🔔 Sistema de notificações
+- 👤 Edição de perfil com upload de foto
+- ☁️ Upload de imagens via Cloudinary
+- 🎵 Sistema de áudio interativo
+- ❄️ Efeitos visuais (neve animada)
+- 🚫 Exclusão de conta com confirmação estilizada
+- 🔗 Redirecionamento por notificações direto ao post
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 📁 Estrutura do Projeto
+📦 South-Chirper/
+┣ 📂 app/ → Controllers e Models (Laravel)
+┣ 📂 resources/views/ → Blade Templates
+┣ 📂 public/
+┃ ┣ 📂 images/ → Imagens do sistema
+┃ ┣ 📂 audio/ → Áudios e efeitos sonoros
+┃ ┗ 📂 storage/ → (link simbólico para uploads locais)
+┣ 📂 routes/ → Rotas web.php
+┣ 📂 database/ → migrations e sqlite
+┣ 📄 .env → Variáveis de ambiente
+┣ 📄 README.md → Documentação
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## ▶️ Como Executar o Projeto
 
-## Code of Conduct
+### 🔌 1. Clonar o repositório
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+git clone https://github.com/SEU-USUARIO/south-chirper.git
+cd south-chirper
+composer install
+npm install
+php artisan serve
+http://127.0.0.1:8000
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 🚀 Deploy
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+O projeto pode ser hospedado em:
+
+- Laravel Cloud  
+- Vercel (frontend estático)  
+- Render / Railway  
+
+⚠️ **IMPORTANTE:**
+
+- Configure corretamente o `.env` no deploy  
+- Use Cloudinary para evitar problemas com storage  
+
+---
+
+## 🛠️ Stack de Tecnologias
+
+### 🧠 Backend
+
+- Laravel 12  
+- PHP 8.4  
+- SQLite (dev)  
+
+---
+
+### 🎨 Frontend
+
+- Blade Templates  
+- Tailwind CSS  
+- JavaScript puro  
+
+---
+
+### ☁️ Cloud
+
+- Armazenamento de imagens  
+- CDN de mídia  
+
+---
+
+## 🔊 Recursos Especiais
+
+- 🎵 Sons interativos ao clicar  
+- ❄️ Neve animada dinâmica  
+- 😂 Humor estilo South Park  
+- 🎯 Interface altamente personalizada  
+
+---
+
+## 👩‍💻 Desenvolvedora
+
+<div align="center">
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/sofismoura">
+        <img src="https://avatars.githubusercontent.com/u/166918518?v=4" width="100px;" alt="Sofia"/><br />
+        <b>Sofia Moura</b><br />
+      </a>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+---
+
+## 🏫 Projeto Acadêmico
+
+Desenvolvido como projeto prático aplicando:
+
+- Desenvolvimento Web  
+- UX/UI  
+- Integração com APIs  
+- Deploy em nuvem  
+
+---
+
+## ⭐ Apoie o Projeto
+
+Se você curtiu esse caos organizado:
+
+- ⭐ Dá uma estrela no repositório  
+- 💬 Sugestões são bem-vindas  
+- 🔥 E não esquece: **RESPEITE MINHA AUTORIDADE!**  
+
+---
+
+<div align="center">
+  <img src="public/images/cartmanpolice.png" width="200px" />
+</div>
